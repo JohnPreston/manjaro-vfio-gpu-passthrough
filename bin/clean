@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+clean()
+{
+    rm -rfv $1/.*~
+    rm -rfv $1/*~
+    rm -rfv $1/*.default
+    rm -rfv $1/*.sample
+    rm -rfv $1/__pycache__
+    rm -rfv $1/*.pyc
+}
+
+if [ $1 ]
+then
+    if [ -d $1 ]
+    then
+	clean $1
+    else
+	echo "$1 not a directory"
+    fi
+else
+    clean `pwd`
+fi
